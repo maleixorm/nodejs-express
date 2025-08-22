@@ -19,6 +19,12 @@ const checkAuth = function(req, res, next) {
 
 app.use(checkAuth);
 
+app.get('/users/:id', (req, res) => {
+    const id = req.params.id;
+    console.log(`Estamos buscando pelo usuário: ${id}`);
+    res.sendFile(`${basePath}/users.html`);
+});
+
 app.get('/', (req, res) => {
     res.sendFile(`${basePath}/index.html`);
 });
