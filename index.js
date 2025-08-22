@@ -6,10 +6,14 @@ const port = 3000;
 const basePath = path.join(__dirname, 'templates');
 
 const checkAuth = function(req, res, next) {
+    req.authStatus = false;
+
     if (req.authStatus) {
         console.log("Está logado. Pode continuar!");
+        next();
     } else {
         console.log("Não está logado! Faça o login para continuar!");
+        next();
     }
 }
 
