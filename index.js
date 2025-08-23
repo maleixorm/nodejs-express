@@ -19,6 +19,14 @@ const checkAuth = function(req, res, next) {
 
 // app.use(checkAuth);
 
+app.get('/users/add', (req, res) => {
+    res.sendFile(`${basePath}/userform.html`);
+});
+
+app.post('/users/save', (req, res) => {
+
+});
+
 app.get('/users/:id', (req, res) => {
     const id = req.params.id;
     console.log(`Estamos buscando pelo usuário: ${id}`);
@@ -31,4 +39,4 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
     console.log(`App rodando na porta ${port}`);
-})
+});
