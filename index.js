@@ -3,6 +3,14 @@ const app = express();
 const path = require('path');
 const port = 3000;
 
+app.use(
+    express.urlencoded({
+        extended: true,
+    }),
+);
+
+app.use(express.json());
+
 const basePath = path.join(__dirname, 'templates');
 
 const checkAuth = function(req, res, next) {
@@ -24,7 +32,7 @@ app.get('/users/add', (req, res) => {
 });
 
 app.post('/users/save', (req, res) => {
-
+    console.log(req.body);
 });
 
 app.get('/users/:id', (req, res) => {
