@@ -33,6 +33,10 @@ app.get('/users/add', (req, res) => {
 
 app.post('/users/save', (req, res) => {
     console.log(req.body);
+    const name = req.body.name;
+    const age = req.body.age;
+    console.log(`O nome do usuário é ${name} e ele tem ${age} anos.`);
+    res.sendFile(`${basePath}/userform.html`);
 });
 
 app.get('/users/:id', (req, res) => {
