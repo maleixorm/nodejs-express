@@ -26,6 +26,9 @@ app.use(
 
 app.use(express.json());
 
+// Arquivos estáticos
+app.use(express.static('public'));
+
 const basePath = path.join(__dirname, 'templates');
 
 app.use('/users', users);
