@@ -1,17 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const users = require('./users');
 const port = 3000;
-
-app.use(
-    express.urlencoded({
-        extended: true,
-    }),
-);
-
-app.use(express.json());
-
-const basePath = path.join(__dirname, 'templates');
 
 const checkAuth = function(req, res, next) {
     req.authStatus = false;
@@ -27,23 +18,17 @@ const checkAuth = function(req, res, next) {
 
 // app.use(checkAuth);
 
-app.get('/users/add', (req, res) => {
-    res.sendFile(`${basePath}/userform.html`);
-});
+app.use(
+    express.urlencoded({
+        extended: true,
+    }),
+);
 
-app.post('/users/save', (req, res) => {
-    console.log(req.body);
-    const name = req.body.name;
-    const age = req.body.age;
-    console.log(`O nome do usuário é ${name} e ele tem ${age} anos.`);
-    res.sendFile(`${basePath}/userform.html`);
-});
+app.use(express.json());
 
-app.get('/users/:id', (req, res) => {
-    const id = req.params.id;
-    console.log(`Estamos buscando pelo usuário: ${id}`);
-    res.sendFile(`${basePath}/users.html`);
-});
+const basePath = path.join(__dirname, 'templates');
+
+app.use('/users', users);
 
 app.get('/', (req, res) => {
     res.sendFile(`${basePath}/index.html`);
